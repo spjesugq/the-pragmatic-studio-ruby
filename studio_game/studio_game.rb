@@ -1,13 +1,26 @@
-emoji = "🚀"
-puts emoji * 25
+class Player
+  def initialize(name, health = 100)
+    @name = name.capitalize
+    @health = health
+  end
 
-puts "\nLet's play a game!\n\n\t3\n\t2\n\t1\n\n"
+  def drain
+    @health -= 10
+  end
 
-def say_hello(name:, health: 100)
-  "I'm #{name} with a health of #{health}"
+  def boost
+    @health += 20
+  end
+
+  def to_s
+    "I'm #{@name} with a health of #{@health}"
+  end
 end
 
-puts say_hello(name: "finn", health: 60)
-puts say_hello(name: "lucy", health: 90)
-puts say_hello(name: "jase")
-puts say_hello(health: 125, name: "alex")
+player_1 = Player.new("finn", 60)
+puts player_1.inspect
+puts player_1
+player_1.drain
+puts player_1
+player_1.boost
+puts player_1
