@@ -29,7 +29,25 @@ class Player
 end
 
 player_1 = Player.new("finn", 60)
-puts player_1.health
-player_1.name = "alexander"
-puts player_1.name
-puts player_1
+number_rolled = rand(1..6)
+
+# if number_rolled < 3
+#   player_1.drain
+#   puts "#{player_1.name} got drained 😩"
+# elsif number_rolled < 5
+#   puts "#{player_1.name} got skipped"
+# else
+#   player_1.boost
+#   puts "#{player_1.name} got boosted 😁"
+# end
+
+case number_rolled
+when 1..2
+  player_1.drain
+  puts "#{player_1.name} got drained 😩"
+when 3..4
+  puts "#{player_1.name} got skipped"
+else
+  player_1.boost
+  puts "#{player_1.name} got boosted 😁"
+end
