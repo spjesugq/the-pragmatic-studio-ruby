@@ -12,7 +12,7 @@ class Player
   end
 
   def boost
-    @health += 20
+    @health += 15
   end
 
   def score
