@@ -32,12 +32,12 @@ movies.each do |movie|
   number_rolled = rand(10)
   case number_rolled
   when 1..2
-    movie_1.thumbs_down
-    puts "#{movie_1.title} got a 👎"
+    movie.thumbs_down
+    puts "#{movie.title} got a 👎"
   when 3..4
-    puts "#{movie_1.title} got skipped"
+    puts "#{movie.title} got skipped"
   else
-    movie_1.thumbs_up
-    puts "#{movie_1.title} got a 👍"
+    movie.thumbs_up
+    puts "#{movie.title} got a 👍"
   end
 end
