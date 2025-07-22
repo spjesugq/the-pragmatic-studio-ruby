@@ -2,11 +2,8 @@ class Playlist
   attr_reader :name, :movies
 
   def initialize(name)
-    puts self.inspect
     @name = name
-    puts self.inspect
     @movies = []
-    puts self.inspect
   end
 
   def add_movie(movie)
