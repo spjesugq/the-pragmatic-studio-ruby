@@ -1,7 +1,7 @@
 require_relative "treasure_trove"
 
 class Game
-  attr_reader :title, :players
+  attr_reader :title, :players, :found_treasures
 
   def initialize(title)
     @title = title
@@ -16,6 +16,32 @@ class Game
     rand(1..6)
   end
 
+  def print_stats
+    puts "\n#{title} Stats:"
+    puts "-" * 30
+
+    puts sorted_players
+
+    @players.each do |player|
+      puts "\n#{player.name}'s treasure point totals:"
+      player.found_treasures.each do |name, points|
+        puts "#{name}: #{points}"
+      end
+      puts "total: #{player.points}"
+    end
+
+    puts "\nHigh Scores:"
+    sorted_players.each do |player|
+      name = player.name.ljust(20, ".")
+      points = player.score.round.to_s.rjust(5)
+      puts "#{name}#{points}"
+    end
+  end
+
+  def sorted_players
+    @players.sort_by { |player| player.score }.reverse
+  end
+
   def play(rounds = 1)
     puts "\nLet's play #{@title}!"
 
@@ -23,9 +49,7 @@ class Game
     puts @players
 
     puts "\nThe following treasures can be found:"
-    TreasureTrove::TREASURES.each do |treasure|
-      puts "A #{treasure.name} is worth #{treasure.points} points"
-    end
+    puts TreasureTrove.treasure_items
 
     1.upto(rounds) do |round|
       puts "\nRound #{round}"
