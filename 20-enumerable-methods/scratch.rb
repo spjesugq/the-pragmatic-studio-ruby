@@ -36,3 +36,7 @@ p titles
 sorted = movies.sort_by { |movie| movie.rank }.reverse
 
 p sorted
+
+snacks_eaten = { "nachos" => 28, "popcorn" => 18 }
+
+p snacks_eaten.values.sum

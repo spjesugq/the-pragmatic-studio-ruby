@@ -16,14 +16,33 @@ class Playlist
     rand(1..6)
   end
 
+  def sorted_movies
+    @movies.sort_by { |movie| movie.rank }.reverse
+  end
+
+  def print_stats
+    puts "\n#{@name}'s Playlist Stats:"
+    puts "-" * 30
+
+    puts sorted_movies
+
+    @movies.each do |movie|
+      puts "\n#{movie.title} snack totals:"
+      movie.snacks_eaten do |name, total_price|
+        puts "#{name}: $#{total_price}"       
+      end
+      puts "total: $#{movie.total_snack_price}"
+    end
+  end
+
   def play(viewings = 3)
     puts "*" * 30
     puts "#{@name}'s playlist:"
 
     puts "\nThe snackbar has:"
-    Snackbar::SNACKS.each do |snack|
-      puts "#{snack.name} for $#{snack.price}"
-    end
+    menu_items = Snackbar.menu_items
+
+    puts menu_items
 
     puts "\nBefore watching:"
     puts @movies

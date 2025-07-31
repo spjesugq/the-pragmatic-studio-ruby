@@ -11,6 +11,7 @@ playlist_1.add_movie(movie_1)
 playlist_1.add_movie(movie_2)
 playlist_1.add_movie(movie_3)
 playlist_1.play(1)
+playlist_1.print_stats
 
 playlist_2 = Playlist.new("Fozzie")
 playlist_2.add_movie(movie_3)
