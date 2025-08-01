@@ -1,0 +1,31 @@
+require_relative "lib/flicks/movie"
+require_relative "lib/flicks/movie3d"
+require_relative "lib/flicks/playlist"
+
+playlist_1 = Flicks::Playlist.new("Kermit")
+
+movie_1d = Flicks::Movie.new("goonies", 10)
+movie_3d = Flicks::Movie3D.new("godzilla", 7, 10)
+
+playlist_1.add_movie(movie_1d)
+playlist_1.add_movie(movie_3d)
+
+movies_file = File.join(__dir__, "movies.csv")
+playlist_1.load(ARGV.shift || movies_file)
+
+loop do
+  puts "How many viewings? ('quit' to 'exit')"
+  answer = gets.chomp.downcase
+
+  case answer
+  when /^\d+$/
+    puts "Enjoy your #{answer} viewings..."
+    playlist_1.play(answer.to_i)
+  when "quit", "exit"
+    break
+  else
+    puts "Please enter a number, 'quit' or 'exit'"
+  end
+end
+playlist_1.print_stats
+playlist_1.save
