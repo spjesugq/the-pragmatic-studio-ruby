@@ -1,4 +1,5 @@
 require_relative "treasure_trove"
+require_relative "player"
 
 class Game
   attr_reader :title, :players, :found_treasures
@@ -10,8 +11,8 @@ class Game
 
   def load_players(from_file)
     File.readlines(from_file, chomp: true).each do |line|
-      player, health = line.split(",")
-      add_player(Player.new(player, health.to_i))
+      player = Player.from_csv(line)
+      add_player(player)
     end
   end
 
